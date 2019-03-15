@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { CourseFilter } from '../course-filter';
 import { CourseService } from '../course.service';
 import { Course } from '../course';

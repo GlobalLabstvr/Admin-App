@@ -3,6 +3,7 @@ import { CourseFilter } from './course-filter';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { find } from 'rxjs/operators';
 
 @Injectable()
 export class CourseService {
@@ -40,7 +41,7 @@ export class CourseService {
         let params = {
             "name": filter.name
         };
-
+        console.log('params:'+JSON.stringify(params));
         return this.http.get<Course[]>(url, {params, headers});
     }
 
@@ -49,6 +50,11 @@ export class CourseService {
         let headers = new HttpHeaders()
             .set('Accept', 'application/json');
         return this.http.post<Course>(url, entity, {headers});
+    }
+
+    getCourseList():Observable<Course[]>{
+        let filter:CourseFilter = {name:''};
+        return this.find(filter);
     }
 }
 

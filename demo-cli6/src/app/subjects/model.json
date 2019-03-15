@@ -1,0 +1,29 @@
+{ 
+    "title": "Subject",
+    "entity": "subject",
+    "api": {
+      "url": "http://localhost:8080/subjects"
+    },
+    "filter": [
+      "name"
+    ],
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "isId": true,
+        "readonly": true,
+        "type": "number"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "label": "Name"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "label": "Description"
+      } 
+    ]
+}
