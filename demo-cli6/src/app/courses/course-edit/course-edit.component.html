@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="header">
+        <h1 class="title">Course Detail</h1>
+    </div>
+    <div class="content">
+    
+        <p *ngIf="errors">{{ errors }}</p>
+    
+        <form *ngIf="course">
+                
+            <div class="form-group">
+                <label>Id:</label>
+                <input [(ngModel)]="course.id" name="id" class="form-control">
+            </div>
+                
+            <div class="form-group">
+                <label>Name:</label>
+                <input [(ngModel)]="course.name" name="name" class="form-control">
+            </div>
+                
+            <div class="form-group">
+                <label>Desc:</label>
+                <input [(ngModel)]="course.desc" name="description" class="form-control">
+            </div>
+                
+            <div class="form-group">
+                <label>Date:</label>
+                <input [(ngModel)]="course.date" name="date" class="form-control">
+            </div>
+        
+            <div class="form-group">
+                <button
+                (click)="save()"
+                class="btn btn-default">Save</button>
+            </div>
+
+        </form>
+    
+    </div>
+</div>
