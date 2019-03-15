@@ -13,11 +13,12 @@ export class CourseService {
     courseList: Course[] = [];
   
     findById(id: string): Observable<Course> {
-        let url = 'http://localhost:8080/courses/'; 
-        let params = { "id": id };
+        let url = 'http://localhost:8080/courses/'+id; 
+        //let params = { "id": id };
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
-        return this.http.get<Course>(url, {params, headers});
+                            console.log(url);
+        return this.http.get<Course>(url, {headers});
     }
     
     load(filter: CourseFilter): void {

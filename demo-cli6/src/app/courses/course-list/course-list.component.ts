@@ -11,7 +11,7 @@ import { Course } from '../course';
 export class CourseListComponent {
 
     filter = new CourseFilter();
-    selectedFlight: Course;
+    selectedCourse: Course;
 
     get courseList(): Course[] {
         return this.courseService.courseList;
@@ -28,7 +28,7 @@ export class CourseListComponent {
     }
 
     select(selected: Course): void {
-        this.selectedFlight = selected;
+        this.selectedCourse = selected;
     }
 
 }

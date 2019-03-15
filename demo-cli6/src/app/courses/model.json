@@ -1,12 +1,11 @@
 { 
-    "title": "Flight",
-    "entity": "flight",
+    "title": "Course",
+    "entity": "course",
     "api": {
-      "url": "http://www.angular.at/api/flight"
+      "url": "http://localhost:8080/courses"
     },
     "filter": [
-      "from",
-      "to"
+      "name"
     ],
     "fields": [
       {
@@ -18,20 +17,14 @@
         "control": "text"
       },
       {
-        "name": "from",
+        "name": "name",
         "type": "string",
-        "label": "From"
+        "label": "Name"
       },
       {
-        "name": "to",
+        "name": "description",
         "type": "string",
-        "label": "To"
-      },
-      {
-        "name": "date",
-        "type": "string",
-        "control": "date",
-        "label": "Date"
+        "label": "Description"
       } 
     ]
 }

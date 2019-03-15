@@ -27,6 +27,7 @@ export class CourseEditComponent implements OnInit {
             .pipe(
                 map(p => p['id']),
                 switchMap(id => {
+                    console.log('id:'+id);
                     if (id === 'new') return of(new Course());
                     return this.courseService.findById(id)
                 })
