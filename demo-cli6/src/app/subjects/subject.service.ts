@@ -6,6 +6,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class SubjectService {
+    /*getSubjectList(): any {
+        throw new Error("Method not implemented.");
+    }*/
     
     constructor(private http: HttpClient) {
     }
@@ -48,6 +51,11 @@ export class SubjectService {
         let headers = new HttpHeaders()
             .set('Accept', 'application/json');
         return this.http.post<Subject>(url, entity, {headers});
+    }
+
+    getSubjectList():Observable<Subject[]>{
+        let filter:SubjectFilter = {name:''};
+        return this.find(filter);
     }
 }
 

@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="header">
+        <h1 class="title">Topic Detail</h1>
+    </div>
+    <div class="content">
+    
+        <p *ngIf="errors">{{ errors }}</p>
+    
+        <form *ngIf="topic">
+                
+            <div class="form-group">
+                <label>Subject:</label>
+                <select name="subjectId" [(ngModel)]="topic.subjectId" class="form-control">
+                    <option [value]="subject.id" *ngFor="let subject of subjects">
+                        {{subject.name}}
+                    </option> 
+                </select>    
+            </div>
+                
+            <div class="form-group">
+                <label>Name:</label>
+                <input [(ngModel)]="topic.name" name="name" class="form-control">
+            </div>
+                
+            <div class="form-group">
+                <label>Description:</label>
+                <input [(ngModel)]="topic.description" name="description" class="form-control">
+            </div>
+        
+            <div class="form-group">
+                <button
+                (click)="save()"
+                class="btn btn-default">Save</button>
+            </div>
+
+        </form>
+    
+    </div>
+</div>

@@ -11,6 +11,9 @@ import {HomeComponent} from './home/home.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import { SubjectModule } from './subjects/subject.module';
+import {TopicModule} from './topics/topic.module';
+import {PlaylistModule} from './playlists/playlist.module';
+import {SiteModule} from './sites/site.module';
 
 @NgModule({
   imports: [
@@ -21,6 +24,9 @@ import { SubjectModule } from './subjects/subject.module';
     RouterModule.forRoot([...APP_ROUTES], {...APP_EXTRA_OPTIONS}),
 
     SubjectModule,
+    TopicModule,
+    PlaylistModule,
+    SiteModule
   ],
   declarations: [
     AppComponent,

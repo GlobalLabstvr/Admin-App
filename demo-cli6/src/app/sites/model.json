@@ -1,0 +1,29 @@
+{ 
+    "title": "Site",
+    "entity": "site",
+    "api": {
+      "url": "http://localhost:8080/sites"
+    },
+    "filter": [
+      "name"
+    ],
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "isId": true,
+        "readonly": true,
+        "type": "number"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "label": "Name"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "label": "Description"
+      } 
+    ]
+}
