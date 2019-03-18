@@ -14,7 +14,7 @@ import { SubjectModule } from './subjects/subject.module';
 import {TopicModule} from './topics/topic.module';
 import {PlaylistModule} from './playlists/playlist.module';
 import {SiteModule} from './sites/site.module';
-
+import {ProgramModule} from './programs/program.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -26,7 +26,8 @@ import {SiteModule} from './sites/site.module';
     SubjectModule,
     TopicModule,
     PlaylistModule,
-    SiteModule
+    SiteModule,
+    ProgramModule
   ],
   declarations: [
     AppComponent,
