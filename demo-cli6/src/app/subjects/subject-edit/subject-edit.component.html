@@ -10,8 +10,9 @@
                 
             <div class="form-group">
                 <label>Course:</label>
-                <select name="courseId" [(ngModel)]="subject.courseId" class="form-control">
-                    <option [value]="course.id" *ngFor="let course of courses">
+                <select name="courseId" [(ngModel)]="subject.course.id" class="form-control">
+                    <option [value]="course.id" 
+                    *ngFor="let course of courses">
                         {{course.name}}
                     </option> 
                 </select>    
@@ -28,9 +29,12 @@
             </div>
         
             <div class="form-group">
-                <button
+                <button *ngIf="flag"
+                (click)="create()"
+                class="btn btn-default"> Create </button>
+                <button *ngIf = "!flag"
                 (click)="save()"
-                class="btn btn-default">Save</button>
+                class="btn btn-default"> Save </button>
             </div>
 
         </form>

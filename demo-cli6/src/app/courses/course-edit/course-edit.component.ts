@@ -14,6 +14,7 @@ export class CourseEditComponent implements OnInit {
     id: string;
     course: Course;
     errors: string;
+    flag:boolean;
 
     constructor(
         private route: ActivatedRoute,
@@ -28,7 +29,11 @@ export class CourseEditComponent implements OnInit {
                 map(p => p['id']),
                 switchMap(id => {
                     console.log('id:'+id);
-                    if (id === 'new') return of(new Course());
+                    if (id === 'new'){
+                        this.flag = true;
+                        return of(new Course());     
+                    }
+                    this.flag = false; 
                     return this.courseService.findById(id)
                 })
             )
@@ -41,6 +46,18 @@ export class CourseEditComponent implements OnInit {
                     this.errors = 'Error loading'; 
                 }
             );
+    }
+
+    create() {
+        this.courseService.create(this.course).subscribe(
+            course => { 
+                this.course = course; 
+                this.errors = 'Save was successful!'; 
+            },
+            err => { 
+                this.errors = 'Error saving'; 
+            }
+        );
     }
 
     save() {

@@ -16,11 +16,11 @@ export class SubjectService {
     subjectList: Subject[] = [];
   
     findById(id: string): Observable<Subject> {
-        let url = 'http://localhost:8080/subjects'; 
-        let params = { "id": id };
+        let url = 'http://localhost:8080/subjects/'+id; 
+        //let params = { "id": id };
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
-        return this.http.get<Subject>(url, {params, headers});
+        return this.http.get<Subject>(url, {headers});
     }
     
     load(filter: SubjectFilter): void {
@@ -47,7 +47,14 @@ export class SubjectService {
     }
 
     save(entity: Subject): Observable<Subject> {
-        let url = 'http://localhost:8080/subjects/'+entity.courseId;
+        let url = 'http://localhost:8080/subjects';
+        let headers = new HttpHeaders()
+            .set('Accept', 'application/json');
+        return this.http.put<Subject>(url, entity, {headers});
+    }
+
+    create(entity: Subject): Observable<Subject> {
+        let url = 'http://localhost:8080/subjects/'+entity.course.id;
         let headers = new HttpHeaders()
             .set('Accept', 'application/json');
         return this.http.post<Subject>(url, entity, {headers});

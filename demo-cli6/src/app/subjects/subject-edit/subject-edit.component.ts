@@ -17,6 +17,7 @@ export class SubjectEditComponent implements OnInit {
     subject: Subject;
     errors: string;
     courses: Course[];
+    flag: boolean;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,20 +32,21 @@ export class SubjectEditComponent implements OnInit {
             .pipe(
                 map(p => p['id']),
                 switchMap(id => {
+                    this.courseService.getCourseList().subscribe(
+                        result => {
+                            this.courses = result;
+                        },
+                        err => {
+                            console.log(JSON.stringify(err));
+                            console.error('error loading', err);
+                        }
+                    );
                     if (id === 'new') {
-                        console.log('neewww');
-                        this.courseService.getCourseList().subscribe(
-                            result => {
-                                this.courses = result;
-                            },
-                            err => {
-                                console.log(JSON.stringify(err));
-                                console.error('error loading', err);
-                            }
-                        );
-                        return of(new Subject());
+                        this.flag = true;  
+                        return of(new Subject(new Course()));
                     }
                     else {
+                        this.flag = false;
                         return this.subjectService.findById(id);
                     }        
                 })
@@ -58,6 +60,20 @@ export class SubjectEditComponent implements OnInit {
                         this.errors = 'Error loading';
                     }
                 );
+    }
+
+    create() {
+        console.log("s:"+JSON.stringify(this.subject));
+        this.subjectService.create(this.subject).subscribe(
+            subject => {
+                this.subject = subject;
+
+                this.errors = 'Save was successful!';
+            },
+            err => {
+                this.errors = 'Error saving';
+            }
+        );
     }
 
     save() {

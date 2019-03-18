@@ -13,11 +13,11 @@ export class TopicService {
     topicList: Topic[] = [];
   
     findById(id: string): Observable<Topic> {
-        let url = 'http://localhost:8080/topics'; 
-        let params = { "id": id };
+        let url = 'http://localhost:8080/topics/'+id; 
+        //let params = { "id": id };
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
-        return this.http.get<Topic>(url, {params, headers});
+        return this.http.get<Topic>(url, {headers});
     }
     
     load(filter: TopicFilter): void {
@@ -43,12 +43,20 @@ export class TopicService {
         return this.http.get<Topic[]>(url, {params, headers});
     }
 
-    save(entity: Topic): Observable<Topic> {
-        let url = 'http://localhost:8080/topics/'+entity.subjectId;
+    create(entity: Topic): Observable<Topic> {
+        let url = 'http://localhost:8080/topics/'+entity.subject.id;
         let headers = new HttpHeaders()
             .set('Accept', 'application/json');
         return this.http.post<Topic>(url, entity, {headers});
     }
+
+    save(entity: Topic): Observable<Topic> {
+        let url = 'http://localhost:8080/topics';
+        let headers = new HttpHeaders()
+            .set('Accept', 'application/json');
+        return this.http.put<Topic>(url, entity, {headers});
+    }
+
     getTopicList():Observable<Topic[]>{
         let filter:TopicFilter = {name:''};
         return this.find(filter);

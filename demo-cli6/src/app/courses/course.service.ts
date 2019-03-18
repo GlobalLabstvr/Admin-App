@@ -45,11 +45,18 @@ export class CourseService {
         return this.http.get<Course[]>(url, {params, headers});
     }
 
-    save(entity: Course): Observable<Course> {
+    create(entity: Course): Observable<Course> {
         let url = 'http://localhost:8080/courses';
         let headers = new HttpHeaders()
             .set('Accept', 'application/json');
         return this.http.post<Course>(url, entity, {headers});
+    }
+    
+    save(entity: Course): Observable<Course> {
+        let url = 'http://localhost:8080/courses';
+        let headers = new HttpHeaders()
+            .set('Accept', 'application/json');
+        return this.http.put<Course>(url, entity, {headers});
     }
 
     getCourseList():Observable<Course[]>{

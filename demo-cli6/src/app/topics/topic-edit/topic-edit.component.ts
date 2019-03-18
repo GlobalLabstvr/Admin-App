@@ -6,6 +6,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Subject } from 'src/app/subjects/subject';
 import { SubjectService } from 'src/app/subjects/subject.service';
+import { Course } from 'src/app/courses/course';
 
 @Component({
     selector: 'topic-edit',
@@ -17,6 +18,7 @@ export class TopicEditComponent implements OnInit {
     topic: Topic;
     errors: string;
     subjects: Subject[];
+    flag: boolean;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,37 +33,52 @@ export class TopicEditComponent implements OnInit {
             .pipe(
                 map(p => p['id']),
                 switchMap(id => {
+                    this.subjectService.getSubjectList().subscribe(
+                        result => {
+                            this.subjects = result;
+                        },
+                        err => {
+                            console.log(JSON.stringify(err));
+                            console.error('error loading', err);
+                        }
+                    );
                     if (id === 'new') {
-                        console.log('neewww');
-                        this.subjectService.getSubjectList().subscribe(
-                                result => {
-                                this.subjects = result;
-                            },
-                               err => {
-                                console.log(JSON.stringify(err));
-                                console.error('error loading', err);
-                            }
-                        );
-                        return of(new Topic());
+                        this.flag = true;
+
+                        return of(new Topic(new Subject()));
                     }
                     else {
+                        this.flag = false;
                         return this.topicService.findById(id);
-                    }        
+                    }
                 })
             )
             .subscribe(
-                    topic => {
-                        this.topic = topic;
-                        this.errors = '';
-                    },
-                    err => {
-                        this.errors = 'Error loading';
-                    }
-                );
+                topic => {
+                    console.log("tooopic:" + JSON.stringify(topic));
+                    this.topic = topic;
+                    this.errors = '';
+                },
+                err => {
+                    this.errors = 'Error loading';
+                }
+            );
     }
 
     save() {
         this.topicService.save(this.topic).subscribe(
+            topic => {
+                this.topic = topic;
+                this.errors = 'Save was successful!';
+            },
+            err => {
+                this.errors = 'Error saving';
+            }
+        );
+    }
+
+    create() {
+        this.topicService.create(this.topic).subscribe(
             topic => {
                 this.topic = topic;
                 this.errors = 'Save was successful!';

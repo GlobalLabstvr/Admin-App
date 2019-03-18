@@ -20,9 +20,12 @@
                 
         
             <div class="form-group">
-                <button
+                <button *ngIf="flag"
+                (click)="create()"
+                class="btn btn-default"> Create </button>
+                <button *ngIf = "!flag"
                 (click)="save()"
-                class="btn btn-default">Save</button>
+                class="btn btn-default"> Save </button>
             </div>
 
         </form>

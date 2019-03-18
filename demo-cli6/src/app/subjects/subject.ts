@@ -1,6 +1,12 @@
+import { Course } from "../courses/course";
+
 export class Subject {
     id: number;
     name: string;
     description: string;
-    courseId: number;    
+    course: Course;   
+    
+    constructor(course?:Course){
+        this.course = course;
+    }
 }
