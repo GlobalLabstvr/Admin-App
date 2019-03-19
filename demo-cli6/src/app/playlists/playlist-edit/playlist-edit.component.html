@@ -10,7 +10,7 @@
                 
             <div class="form-group">
                 <label>Topic:</label>
-                <select name="topicId" [(ngModel)]="playlist.topicId" class="form-control">
+                <select name="topicId" [(ngModel)]="playlist.topic.id" class="form-control">
                     <option [value]="topic.id" *ngFor="let topic of topics">
                         {{topic.name}}
                     </option> 
@@ -32,9 +32,12 @@
             </div>
         
             <div class="form-group">
-                <button
+                <button *ngIf="flag"
+                (click)="create()"
+                class="btn btn-default"> Create </button>
+                <button *ngIf = "!flag"
                 (click)="save()"
-                class="btn btn-default">Save</button>
+                class="btn btn-default"> Save </button>
             </div>
 
         </form>

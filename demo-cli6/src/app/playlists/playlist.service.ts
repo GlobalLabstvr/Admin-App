@@ -13,11 +13,11 @@ export class PlaylistService {
     playlistList: Playlist[] = [];
   
     findById(id: string): Observable<Playlist> {
-        let url = 'http://localhost:8080/playlists'; 
-        let params = { "id": id };
+        let url = 'http://localhost:8080/playlists/'+id; 
+        //let params = { "id": id };
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
-        return this.http.get<Playlist>(url, {params, headers});
+        return this.http.get<Playlist>(url, {headers});
     }
     
     load(filter: PlaylistFilter): void {
@@ -43,11 +43,23 @@ export class PlaylistService {
         return this.http.get<Playlist[]>(url, {params, headers});
     }
 
-    save(entity: Playlist): Observable<Playlist> {
-        let url = 'http://localhost:8080/playlists/'+entity.topicId;
+    create(entity: Playlist): Observable<Playlist> {
+        let url = 'http://localhost:8080/playlists/'+entity.topic.id;
         let headers = new HttpHeaders()
             .set('Accept', 'application/json');
         return this.http.post<Playlist>(url, entity, {headers});
+    }
+
+    save(entity: Playlist): Observable<Playlist> {
+        let url = 'http://localhost:8080/playlists/';
+        let headers = new HttpHeaders()
+            .set('Accept', 'application/json');
+        return this.http.put<Playlist>(url, entity, {headers});
+    }
+
+    getPlaylistList():Observable<Playlist[]>{
+        let filter:PlaylistFilter = {name:''};
+        return this.find(filter);
     }
 }
 

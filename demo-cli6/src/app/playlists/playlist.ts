@@ -1,6 +1,12 @@
+import { Topic } from "../topics/topic";
+
 export class Playlist {
     id: number;
     name: string;
     description: string;
-    topicId: number;    
+    topic: Topic;    
+
+constructor(topic?:Topic){
+    this.topic = topic;
+}
 }

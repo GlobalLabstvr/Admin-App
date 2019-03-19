@@ -6,7 +6,7 @@ export class Topic {
     description: string;
     subject: Subject;
     
-    constructor(subject:Subject){
+    constructor(subject?:Subject){
         this.subject = subject;
     }
 }

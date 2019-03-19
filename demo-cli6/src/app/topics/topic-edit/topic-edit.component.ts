@@ -55,7 +55,7 @@ export class TopicEditComponent implements OnInit {
             )
             .subscribe(
                 topic => {
-                    console.log("tooopic:" + JSON.stringify(topic));
+                    console.log("topic:" + JSON.stringify(topic));
                     this.topic = topic;
                     this.errors = '';
                 },

@@ -6,6 +6,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Topic } from 'src/app/topics/topic';
 import { TopicService } from 'src/app/topics/topic.service';
+import { Subject } from 'src/app/subjects/subject';
 
 @Component({
     selector: 'playlist-edit',
@@ -17,6 +18,7 @@ export class PlaylistEditComponent implements OnInit {
     playlist: Playlist;
     errors: string;
     topics: Topic[];
+    flag : boolean;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,9 +33,7 @@ export class PlaylistEditComponent implements OnInit {
             .pipe(
                 map(p => p['id']),
                 switchMap(id => {
-                    if (id === 'new') {
-                        console.log('neewww');
-                        this.topicService.getTopicList().subscribe(
+                   this.topicService.getTopicList().subscribe(
                                 result => {
                                 this.topics = result;
                             },
@@ -42,22 +42,39 @@ export class PlaylistEditComponent implements OnInit {
                                 console.error('error loading', err);
                             }
                         );
-                        return of(new Playlist());
+                        if (id === 'new') {
+                            this.flag = true;
+                            
+                            return of(new Playlist(new Topic()));
                     }
                     else {
+                        this.flag = false;
                         return this.playlistService.findById(id);
-                    }        
+                    }
                 })
             )
-            .subscribe(
-                    playlist => {
-                        this.playlist = playlist;
-                        this.errors = '';
-                    },
-                    err => {
-                        this.errors = 'Error loading';
-                    }
-                );
+             .subscribe(
+                playlist => {
+                    console.log("playlist:" + JSON.stringify(playlist));
+                    this.playlist = playlist;
+                    this.errors = '';
+                },
+                err => {
+                    this.errors = 'Error loading';
+                }
+            );
+    }
+
+    create() {
+        this.playlistService.create(this.playlist).subscribe(
+            playlist => {
+                this.playlist = playlist;
+                this.errors = 'Save was successful!';
+            },
+            err => {
+                this.errors = 'Error saving';
+            }
+        );
     }
 
     save() {
