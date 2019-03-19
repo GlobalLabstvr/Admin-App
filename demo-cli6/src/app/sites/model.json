@@ -25,5 +25,10 @@
         "type": "string",
         "label": "Description"
       } 
+      {
+        "name": "url",
+        "type": "string",
+        "label": "Url"
+      } 
     ]
 }

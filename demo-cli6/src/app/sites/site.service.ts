@@ -13,11 +13,11 @@ export class SiteService {
     siteList: Site[] = [];
   
     findById(id: string): Observable<Site> {
-        let url = 'http://localhost:8080/sites'; 
-        let params = { "id": id };
+        let url = 'http://localhost:8080/sites/'+id; 
+       // let params = { "id": id };
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
-        return this.http.get<Site>(url, {params, headers});
+        return this.http.get<Site>(url, { headers});
     }
     
     load(filter: SiteFilter): void {
@@ -32,7 +32,7 @@ export class SiteService {
     }
 
     find(filter: SiteFilter): Observable<Site[]> {
-        let url = 'http://localhost:8080/sites';
+        let url = 'http://localhost:8080/sites/';
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
 
@@ -42,12 +42,23 @@ export class SiteService {
 
         return this.http.get<Site[]>(url, {params, headers});
     }
-
-    save(entity: Site): Observable<Site> {
-        let url = 'http://localhost:8080/sites/'+entity.topicId;
+    
+    create(entity: Site): Observable<Site> {
+        let url = 'http://localhost:8080/sites/'+entity.topic.id;
         let headers = new HttpHeaders()
             .set('Accept', 'application/json');
         return this.http.post<Site>(url, entity, {headers});
+    }
+
+    save(entity: Site): Observable<Site> {
+        let url = 'http://localhost:8080/sites/';
+        let headers = new HttpHeaders()
+            .set('Accept', 'application/json');
+        return this.http.put<Site>(url, entity, {headers});
+    }
+    getSiteList():Observable<Site[]>{
+        let filter:SiteFilter = {name:''};
+        return this.find(filter);
     }
 }
 

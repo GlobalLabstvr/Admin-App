@@ -13,11 +13,10 @@ export class ProgramService {
     programList: Program[] = [];
   
     findById(id: string): Observable<Program> {
-        let url = 'http://localhost:8080/programs'; 
-        let params = { "id": id };
+        let url = 'http://localhost:8080/programs/'+id; 
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
-        return this.http.get<Program>(url, {params, headers});
+        return this.http.get<Program>(url, {headers});
     }
     
     load(filter: ProgramFilter): void {
@@ -32,7 +31,7 @@ export class ProgramService {
     }
 
     find(filter: ProgramFilter): Observable<Program[]> {
-        let url = 'http://localhost:8080/programs';
+        let url = 'http://localhost:8080/programs/';
         let headers = new HttpHeaders()
                             .set('Accept', 'application/json');
 
@@ -43,11 +42,23 @@ export class ProgramService {
         return this.http.get<Program[]>(url, {params, headers});
     }
 
-    save(entity: Program): Observable<Program> {
-        let url = 'http://localhost:8080/programs/'+entity.topicId;
+    create(entity: Program): Observable<Program> {
+        let url = 'http://localhost:8080/programs/'+entity.topic.id;
         let headers = new HttpHeaders()
             .set('Accept', 'application/json');
         return this.http.post<Program>(url, entity, {headers});
+    }
+
+    save(entity: Program): Observable<Program> {
+        let url = 'http://localhost:8080/programs/';
+        let headers = new HttpHeaders()
+            .set('Accept', 'application/json');
+        return this.http.put<Program>(url, entity, {headers});
+    }
+
+    getProgramList():Observable<Program[]>{
+        let filter:ProgramFilter = {name:''};
+        return this.find(filter);
     }
 }
 

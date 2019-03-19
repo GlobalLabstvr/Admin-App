@@ -17,6 +17,7 @@ export class ProgramEditComponent implements OnInit {
     program: Program;
     errors: string;
     topics: Topic[];
+    flag: boolean;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,8 +32,8 @@ export class ProgramEditComponent implements OnInit {
             .pipe(
                 map(p => p['id']),
                 switchMap(id => {
-                    if (id === 'new') {
-                        console.log('neewww');
+                  
+                        
                         this.topicService.getTopicList().subscribe(
                                 result => {
                                 this.topics = result;
@@ -42,9 +43,15 @@ export class ProgramEditComponent implements OnInit {
                                 console.error('error loading', err);
                             }
                         );
-                        return of(new Program());
-                    }
-                    else {
+                    
+                        if (id === 'new') {
+                            this.flag = true;
+                            
+                            return of(new Program(new Topic()));
+                        }
+                    else
+                     {
+                        this.flag = false;
                         return this.programService.findById(id);
                     }        
                 })
@@ -59,7 +66,17 @@ export class ProgramEditComponent implements OnInit {
                     }
                 );
     }
-
+    create() {
+        this.programService.create(this.program).subscribe(
+            program => {
+                this.program = program;
+                this.errors = 'Save was successful!';
+            },
+            err => {
+                this.errors = 'Error saving';
+            }
+        );
+    }
     save() {
         this.programService.save(this.program).subscribe(
             program => {

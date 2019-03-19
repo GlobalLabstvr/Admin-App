@@ -15,6 +15,7 @@ import {TopicModule} from './topics/topic.module';
 import {PlaylistModule} from './playlists/playlist.module';
 import {SiteModule} from './sites/site.module';
 import {ProgramModule} from './programs/program.module';
+import { DocumentModule } from './documents/document.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -27,7 +28,8 @@ import {ProgramModule} from './programs/program.module';
     TopicModule,
     PlaylistModule,
     SiteModule,
-    ProgramModule
+    ProgramModule,
+    DocumentModule
   ],
   declarations: [
     AppComponent,

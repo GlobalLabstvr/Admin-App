@@ -1,16 +1,16 @@
 <div class="card">
     <div class="header">
-        <h1 class="title">Site Detail</h1>
+        <h1 class="title">Document Detail</h1>
     </div>
     <div class="content">
     
         <p *ngIf="errors">{{ errors }}</p>
     
-        <form *ngIf="site">
+        <form *ngIf="document">
                 
             <div class="form-group">
                 <label>Topic:</label>
-                <select name="topicId" [(ngModel)]="site.topic.id" class="form-control">
+                <select name="topicId" [(ngModel)]="document.topic.id" class="form-control">
                     <option [value]="topic.id" *ngFor="let topic of topics">
                         {{topic.name}}
                     </option> 
@@ -19,19 +19,15 @@
                 
             <div class="form-group">
                 <label>Name:</label>
-                <input [(ngModel)]="site.name" name="name" class="form-control">
+                <input [(ngModel)]="document.name" name="name" class="form-control">
             </div>
                 
             <div class="form-group">
                 <label>Description:</label>
-                <input [(ngModel)]="site.description" name="description" class="form-control">
+                <input [(ngModel)]="document.description" name="description" class="form-control">
             </div>
 
-            <div class="form-group">
-                <label>Url:</label>
-                <input [(ngModel)]="site.url" name="url" class="form-control">
-            </div>
-            <div class="form-group">
+                <div class="form-group">
                 <button *ngIf="flag"
                 (click)="create()"
                 class="btn btn-default"> Create </button>

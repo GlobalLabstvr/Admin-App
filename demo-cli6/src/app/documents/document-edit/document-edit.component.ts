@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SiteService } from '../site.service';
-import { Site } from '../site';
+import { DocumentService } from '../document.service';
+import { Document } from '../document';
 import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Topic } from 'src/app/topics/topic';
 import { TopicService } from 'src/app/topics/topic.service';
 
 @Component({
-    selector: 'site-edit',
-    templateUrl: './site-edit.component.html'
+    selector: 'document-edit',
+    templateUrl: './document-edit.component.html'
 })
-export class SiteEditComponent implements OnInit {
+export class DocumentEditComponent implements OnInit {
 
     id: string;
-    site: Site;
+    document: Document;
     errors: string;
     topics: Topic[];
     flag : boolean;
@@ -22,7 +22,7 @@ export class SiteEditComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private topicService: TopicService,
-        private siteService: SiteService) {
+        private documentService: DocumentService) {
     }
 
     ngOnInit() {
@@ -44,18 +44,18 @@ export class SiteEditComponent implements OnInit {
                         if (id === 'new') {
                             this.flag = true;
                             
-                            return of(new Site(new Topic()));
+                            return of(new Document(new Topic()));
                     }
                     else {
                         this.flag = false;
-                        return this.siteService.findById(id);
+                        return this.documentService.findById(id);
                     }
                 })
             )
              .subscribe(
-                site => {
-                    console.log("site:" + JSON.stringify(site));
-                    this.site = site;
+                document => {
+                    console.log("document:" + JSON.stringify(document));
+                    this.document = document;
                     this.errors = '';
                 },
                 err => {
@@ -65,9 +65,9 @@ export class SiteEditComponent implements OnInit {
     }
 
     create() {
-        this.siteService.create(this.site).subscribe(
-            site => {
-                this.site = site;
+        this.documentService.create(this.document).subscribe(
+            document => {
+                this.document= document;
                 this.errors = 'Save was successful!';
             },
             err => {
@@ -77,9 +77,9 @@ export class SiteEditComponent implements OnInit {
     }
 
     save() {
-        this.siteService.save(this.site).subscribe(
-            site => {
-                this.site = site;
+        this.documentService.save(this.document).subscribe(
+            document => {
+                this.document = document;
                 this.errors = 'Save was successful!';
             },
             err => {
