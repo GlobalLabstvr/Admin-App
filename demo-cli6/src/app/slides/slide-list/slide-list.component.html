@@ -35,6 +35,7 @@
             <th>Id</th>            
             <th>Name</th>            
             <th>Description</th>
+            <th>Image</th>
             <th>Master</th>
             <th>Student</th>
             <th>Program</th>
@@ -48,12 +49,13 @@
             <td>{{item.id}}</td>
             <td>{{item.name}}</td>
             <td>{{item.description}}</td>
+            <td>{{item.image}}</td>
             <td>{{item.master}}</td>
             <td>{{item.student}}</td>
-            <td>{{item.program}}</td>
-            <td>{{item.playlist}}</td>
-            <td>{{item.document}}</td>
-            <td>{{item.site}}</td>
+            <td>{{item.program.name}}</td>
+            <td>{{item.playlist.name}}</td>
+            <td>{{item.document.name}}</td>
+            <td>{{item.site.name}}</td>
            
             <td>
                 

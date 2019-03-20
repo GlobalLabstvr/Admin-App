@@ -7,6 +7,7 @@ export class Slide {
     id: number;
     name: string;
     description: string;
+    image: string;
     master: string;
     student: string;
     program: Program;

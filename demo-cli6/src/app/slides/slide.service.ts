@@ -44,6 +44,7 @@ export class SlideService {
     }
     
     create(entity: Slide): Observable<Slide> {
+        console.log("en:"+JSON.stringify(entity));
         let url = 'http://localhost:8080/slides/'+entity.topic.id;
         let headers = new HttpHeaders()
             .set('Accept', 'application/json');
