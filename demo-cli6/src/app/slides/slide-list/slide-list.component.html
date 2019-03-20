@@ -1,0 +1,66 @@
+<div class="card">
+    
+      <div class="header">
+        <h2 class="title">Slide</h2>
+      </div>
+      <div class="content">
+    
+        <form #f="ngForm">
+
+          <div class="form-group">
+            <label>Name:</label>
+            <input [(ngModel)]="filter.name" name="name" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <button (click)="search()" [disabled]="!f?.valid" class="btn btn-default">
+              Search
+            </button>
+            <a [routerLink]="['../slide','new']" class="btn btn-default">
+                New
+            </a>
+  
+          </div>
+          
+        </form>
+    
+      </div>
+    </div>
+    
+    <div class="card" *ngIf="slideList.length > 0">
+    
+      <table class="table table-contensed">
+        <thead>
+        <tr>            
+            <th>Id</th>            
+            <th>Name</th>            
+            <th>Description</th>
+            <th>Master</th>
+            <th>Student</th>
+            <th>Program</th>
+            <th>Playlist</th>
+            <th>Document</th>
+            <th>Site</th>
+                        
+        </tr>
+        </thead>
+        <tr *ngFor="let item of slideList" [class.active]="item === selectedPlaylist">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.master}}</td>
+            <td>{{item.student}}</td>
+            <td>{{item.program}}</td>
+            <td>{{item.playlist}}</td>
+            <td>{{item.document}}</td>
+            <td>{{item.site}}</td>
+           
+            <td>
+                
+                <a [routerLink]="['../slide', item.id ]">Details</a> |           
+                <a (click)="select(item)">Select</a>
+            </td>
+        </tr>
+      </table>
+    
+    </div>

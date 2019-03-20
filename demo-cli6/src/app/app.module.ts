@@ -16,6 +16,7 @@ import {PlaylistModule} from './playlists/playlist.module';
 import {SiteModule} from './sites/site.module';
 import {ProgramModule} from './programs/program.module';
 import { DocumentModule } from './documents/document.module';
+import { SlideModule } from './slides/slide.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -29,7 +30,8 @@ import { DocumentModule } from './documents/document.module';
     PlaylistModule,
     SiteModule,
     ProgramModule,
-    DocumentModule
+    DocumentModule,
+    SlideModule
   ],
   declarations: [
     AppComponent,

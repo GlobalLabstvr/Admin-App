@@ -1,0 +1,91 @@
+<div class="card">
+    <div class="header">
+        <h1 class="title">Slide Detail</h1>
+    </div>
+    <div class="content">
+    
+        <p *ngIf="errors">{{ errors }}</p>
+    
+        <form *ngIf="slide">
+                
+            <div class="form-group">
+                <label>Topic:</label>
+                <select name="topicId" [(ngModel)]="slide.topic.id" class="form-control">
+                    <option [value]="topic.id" *ngFor="let topic of topics">
+                        {{topic.name}}
+                    </option> 
+                </select>    
+            </div>
+                
+            <div class="form-group">
+                <label>Name:</label>
+                <input [(ngModel)]="slide.name" name="name" class="form-control">
+            </div>
+                
+            <div class="form-group">
+                <label>Description:</label>
+                <input [(ngModel)]="slide.description" name="description" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Master:</label>
+                <input [(ngModel)]="slide.master" name="master" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Student:</label>
+                <input [(ngModel)]="slide.student" name="student" class="form-control">
+            </div>
+           
+            
+            <div class="form-group">
+                <label>Programs:</label>
+            <select name="programId" [(ngModel)]="slide.program.id" class="form-control">
+            <option [value]="program.id" *ngFor="let program of programs">
+                {{program.name}}
+            </option>
+            </select> 
+            </div>
+
+            <div class="form-group">
+                <label>Sites:</label>
+                <select name="siteId" [(ngModel)]="slide.site.id" class="form-control">
+                    <option [value]="site.id" *ngFor="let site of sites">
+                        {{site.name}}
+                    </option>
+                    </select>
+            </div>
+
+            <div class="form-group">
+                <label>Documents:</label>
+                <select name="documentId" [(ngModel)]="slide.document.id" class="form-control">
+                    <option [value]="document.id" *ngFor="let document of documents">
+                        {{document.name}}
+                    </option>
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                        <label>Playlists:</label>
+                        <select name="playlistId" [(ngModel)]="slide.playlist.id" class="form-control">
+                            <option [value]="playlist.id" *ngFor="let playlist of playlists">
+                                {{playlist.name}}
+                            </option>
+                            </select>
+                        </div>
+                         
+            
+                        <div class="form-group">
+                                <button *ngIf="flag"
+                                (click)="create()"
+                                class="btn btn-default"> Create </button>
+                                <button *ngIf = "!flag"
+                                (click)="save()"
+                                class="btn btn-default"> Save </button>
+                            </div>
+        
+
+        </form>
+    
+    </div>
+</div>
