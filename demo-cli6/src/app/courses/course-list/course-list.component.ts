@@ -20,6 +20,7 @@ export class CourseListComponent {
     }
 
     ngOnInit() {
+        this.search();
     }
 
     search(): void {

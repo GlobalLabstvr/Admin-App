@@ -32,7 +32,7 @@
       <table class="table table-contensed">
         <thead>
         <tr>            
-            <th>Id</th>            
+            <th>S.No</th>            
             <th>Name</th>            
             <th>Description</th>
             <th>Image</th>
@@ -45,8 +45,8 @@
                         
         </tr>
         </thead>
-        <tr *ngFor="let item of slideList" [class.active]="item === selectedPlaylist">
-            <td>{{item.id}}</td>
+        <tr *ngFor="let item of slideList; let i = index;" [class.active]="item === selectedPlaylist">
+            <td>{{i+1}}</td>
             <td>{{item.name}}</td>
             <td>{{item.description}}</td>
             <td>{{item.image}}</td>
@@ -59,10 +59,12 @@
            
             <td>
                 
-                <a [routerLink]="['../slide', item.id ]">Details</a> |           
-                <a (click)="select(item)">Select</a>
+                <a [routerLink]="['../slide', item.id ]">Details</a>
             </td>
         </tr>
       </table>
     
+    </div>
+    <div class="card" *ngIf="slideList.length <=0 ">
+      <p>No Records Found...</p>
     </div>

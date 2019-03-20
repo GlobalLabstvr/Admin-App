@@ -21,6 +21,7 @@ export class SubjectListComponent {
     }
 
     ngOnInit() {
+        this.search();
     }
 
     search(): void {

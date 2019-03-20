@@ -21,6 +21,7 @@ export class SlideListComponent {
     }
 
     ngOnInit() {
+        this.search();
     }
 
     search(): void {

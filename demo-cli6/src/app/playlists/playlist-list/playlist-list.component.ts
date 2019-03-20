@@ -21,6 +21,7 @@ export class PlaylistListComponent {
     }
 
     ngOnInit() {
+        this.search();
     }
 
     search(): void {

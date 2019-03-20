@@ -21,6 +21,7 @@ export class TopicListComponent {
     }
 
     ngOnInit() {
+        this.search();
     }
 
     search(): void {

@@ -21,6 +21,7 @@ export class DocumentListComponent {
     }
 
     ngOnInit() {
+        this.search();
     }
 
     search(): void {

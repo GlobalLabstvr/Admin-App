@@ -32,23 +32,26 @@
       <table class="table table-contensed">
         <thead>
         <tr>            
-            <th>Id</th>            
+            <th>S.No</th>            
             <th>Name</th>            
             <th>Description</th>
             <th>Url</th>
         </tr>
         </thead>
-        <tr *ngFor="let item of siteList" [class.active]="item === selectedPlaylist">
-            <td>{{item.id}}</td>
+        <tr *ngFor="let item of siteList; let i = index;" [class.active]="item === selectedPlaylist">
+            <td>{{i+1}}</td>
             <td>{{item.name}}</td>
             <td>{{item.description}}</td>
             <td>{{item.url}}</td>
             <td>
                 
-                <a [routerLink]="['../site', item.id ]">Details</a> |           
-                <a (click)="select(item)">Select</a>
+                <a [routerLink]="['../site', item.id ]">Details</a>
             </td>
         </tr>
       </table>
     
+    </div>
+
+    <div class="card" *ngIf="siteList.length <=0 ">
+      <p>No Records Found...</p>
     </div>

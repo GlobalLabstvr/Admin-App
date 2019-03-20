@@ -21,6 +21,7 @@ export class ProgramListComponent {
     }
 
     ngOnInit() {
+        this.search();
     }
 
     search(): void {

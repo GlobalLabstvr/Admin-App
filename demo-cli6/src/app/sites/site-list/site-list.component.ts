@@ -21,6 +21,7 @@ export class SiteListComponent {
     }
 
     ngOnInit() {
+        this.search();
     }
 
     search(): void {
