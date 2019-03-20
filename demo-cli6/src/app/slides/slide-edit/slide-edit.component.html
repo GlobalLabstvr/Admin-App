@@ -7,7 +7,8 @@
         <p *ngIf="errors">{{ errors }}</p>
     
         <form *ngIf="slide">
-                
+              <div class="row">
+                  <div class="col-sm-6 col-md-5">
             <div class="form-group">
                 <label>Topic:</label>
                 <select name="topicId" [(ngModel)]="slide.topic.id" class="form-control">
@@ -30,16 +31,20 @@
             <div class="form-group">
                 <label>Image:</label>
                 <input [(ngModel)]="slide.image" name="image" class="form-control">
-            </div>
+            </div></div>
+            <div class="col-sm-6 col-md-5">
 
             <div class="form-group">
                 <label>Master:</label>
-                <input [(ngModel)]="slide.master" name="master" class="form-control">
-            </div>
+                <textarea name="master" class="form-control"></textarea>
+                <!--<input [(ngModel)]="slide.master" type="textarea" name="master" class="form-control">-->
+                </div>
 
             <div class="form-group">
                 <label>Student:</label>
-                <input [(ngModel)]="slide.student" name="student" class="form-control">
+                <textarea name="student" class="form-control"></textarea>
+                <!----
+                <input [(ngModel)]="slide.student" type="textarea" name="student" class="form-control">-->
             </div>
            
             
@@ -77,8 +82,8 @@
                                 {{playlist.name}}
                             </option>
                             </select>
-                        </div>
-                         
+                        </div></div>
+                    </div>  
             
                         <div class="form-group">
                                 <button *ngIf="flag"
