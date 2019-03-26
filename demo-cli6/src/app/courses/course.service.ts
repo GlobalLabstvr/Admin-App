@@ -25,6 +25,7 @@ export class CourseService {
     load(filter: CourseFilter): void {
         this.find(filter).subscribe(
             result => {
+                console.log('clist:'+JSON.stringify(result));
                 this.courseList = result;
             },
             err => {

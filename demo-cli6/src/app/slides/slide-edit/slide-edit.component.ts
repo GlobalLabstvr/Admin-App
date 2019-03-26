@@ -29,6 +29,11 @@ export class SlideEditComponent implements OnInit {
     programs: Program[];
     sites: Site[];
     documents: Document[];
+
+    selectedProgramId:number;
+    selectedPlaylistId:number;
+    selectedSiteId:number;
+    selectedDocumentId:number;
     
     flag: boolean;
 
@@ -69,6 +74,38 @@ export class SlideEditComponent implements OnInit {
                 slide => {
                     console.log("slide:" + JSON.stringify(slide));
                     this.slide = slide;
+                    if(this.slide.program!=null && this.slide.program.id!=null){
+                        console.log('--->'+this.slide.program.id)
+                        this.selectedProgramId = this.slide.program.id;     
+                    }
+                    else{
+                        this.selectedProgramId=null;
+                    }
+
+                    if(this.slide.playlist!=null && this.slide.playlist.id!=null){
+                        console.log('--->'+this.slide.playlist.id)
+                        this.selectedPlaylistId = this.slide.playlist.id;     
+                    }
+                    else{
+                        this.selectedPlaylistId=null;
+                    }
+
+                    if(this.slide.site!=null && this.slide.site.id!=null){
+                        console.log('--->'+this.slide.site.id)
+                        this.selectedSiteId = this.slide.site.id;     
+                    }
+                    else{
+                        this.selectedSiteId=null;
+                    }
+
+                    if(this.slide.document!=null && this.slide.document.id!=null){
+                        console.log('--->'+this.slide.document.id)
+                        this.selectedDocumentId = this.slide.document.id;     
+                    }
+                    else{
+                        this.selectedDocumentId=null;
+                    }
+                    
                     this.errors = '';
                 },
                 err => {
@@ -78,9 +115,22 @@ export class SlideEditComponent implements OnInit {
     }
 
     create() {
+        
         this.slideService.create(this.slide).subscribe(
             slide => {
                 this.slide = slide;
+                if(this.slide.playlist == null){
+                    this.slide.playlist = new Playlist();
+                } 
+                if(this.slide.program == null){
+                    this.slide.program = new Program();
+                }
+                if(this.slide.document == null){
+                    this.slide.document = new Document();
+                }
+                if(this.slide.site == null){
+                    this.slide.site = new Site();
+                }
                 this.errors = 'Save was successful!';
             },
             err => {
@@ -93,6 +143,18 @@ export class SlideEditComponent implements OnInit {
         this.slideService.save(this.slide).subscribe(
             slide => {
                 this.slide = slide;
+                if(this.slide.playlist == null){
+                    this.slide.playlist = new Playlist();
+                } 
+                if(this.slide.program == null){
+                    this.slide.program = new Program();
+                }
+                if(this.slide.document == null){
+                    this.slide.document = new Document();
+                }
+                if(this.slide.site == null){
+                    this.slide.site = new Site();
+                }
                 this.errors = 'Save was successful!';
             },
             err => {

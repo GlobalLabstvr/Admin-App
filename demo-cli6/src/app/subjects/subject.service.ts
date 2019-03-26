@@ -3,6 +3,7 @@ import { SubjectFilter } from './subject-filter';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { JSDocCommentStmt } from '@angular/compiler';
 
 @Injectable()
 export class SubjectService {
@@ -26,6 +27,7 @@ export class SubjectService {
     load(filter: SubjectFilter): void {
         this.find(filter).subscribe(
             result => {
+                console.log("subject:"+JSON.stringify(result))
                 this.subjectList = result;
             },
             err => {

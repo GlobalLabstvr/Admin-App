@@ -10,10 +10,10 @@ export class Slide {
     image: string;
     master: string;
     student: string;
-    program: Program;
-    playlist: Playlist;
-    site: Site;
-    document: Document;
+    program?: Program;
+    playlist?: Playlist;
+    site?: Site;
+    document?: Document;
    
     topic: Topic;  
 

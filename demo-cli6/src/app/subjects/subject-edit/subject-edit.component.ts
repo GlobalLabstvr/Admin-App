@@ -53,6 +53,7 @@ export class SubjectEditComponent implements OnInit {
             )
             .subscribe(
                     subject => {
+                        console.log('subject:'+JSON.stringify(subject))
                         this.subject = subject;
                         this.errors = '';
                     },
@@ -67,7 +68,7 @@ export class SubjectEditComponent implements OnInit {
         this.subjectService.create(this.subject).subscribe(
             subject => {
                 this.subject = subject;
-
+                console.log('createsubject:'+JSON.stringify(subject))    
                 this.errors = 'Save was successful!';
             },
             err => {

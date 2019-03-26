@@ -51,39 +51,42 @@
 
                     <div class="form-group">
                         <label>Programs:</label>
-                        <select name="programId" [(ngModel)]="slide.program.id" class="form-control">
-                            <option [value]="program.id" *ngFor="let program of programs">
-                                {{program.name}}
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Sites:</label>
-                        <select name="siteId" [(ngModel)]="slide.site.id" class="form-control">
-                            <option [value]="site.id" *ngFor="let site of sites">
-                                {{site.name}}
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Documents:</label>
-                        <select name="documentId" [(ngModel)]="slide.document.id" class="form-control">
-                            <option [value]="document.id" *ngFor="let document of documents">
-                                {{document.name}}
+                        <select name="programId" [ngModel]="selectedProgramId" class="form-control">
+                            <option [ngValue]="program.id" *ngFor="let program of programs">
+                                {{program?.name}}
                             </option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Playlists:</label>
-                        <select name="playlistId" [(ngModel)]="slide.playlist.id" class="form-control">
-                            <option [value]="playlist.id" *ngFor="let playlist of playlists">
-                                {{playlist.name}}
+                        <select name="playlistId" [ngModel]="selectedPlaylistId" class="form-control">
+                            <option [ngValue]="playlist.id" *ngFor="let playlist of playlists">
+                                {{playlist?.name}}
                             </option>
                         </select>
                     </div>
+
+
+                    <div class="form-group">
+                        <label>Sites:</label>
+                        <select name="siteId" [ngModel]="selectedSiteId" class="form-control">
+                            <option [ngValue]="site.id" *ngFor="let site of sites">
+                                {{site?.name}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Documents:</label>
+                        <select name="documentId" [ngModel]="selectedDocumentId" class="form-control">
+                            <option [ngValue]="document.id" *ngFor="let document of documents">
+                                {{document?.name}}
+                            </option>
+                        </select>
+                    </div>
+
+
                 </div>
             </div>
 
